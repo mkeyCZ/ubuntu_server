@@ -6,4 +6,4 @@ Toto úložiště obsahuje sbírku podrobných návodů pro nasazení a správu 
 `wget -qO- https://raw.githubusercontent.com/mkeyCZ/ubuntu_server/main/install_docker.sh | bash`
 
 ### Instalace portaineru:
-`wget -qO- | bash https://github.com/mkeyCZ/ubuntu_server/tree/main/install_portainer.sh | bash`
+`wget -qO- https://raw.githubusercontent.com/mkeyCZ/ubuntu_server/main/install_portainer.sh | bash`
