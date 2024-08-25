@@ -1,5 +1,6 @@
-# ubuntu_server
-Instalace ubuntu serveru
+# Ubuntu Server: Docker a Portainer
+
+Toto úložiště obsahuje sbírku podrobných návodů pro nasazení a správu různých serverových aplikací pomocí nástrojů Docker a Portainer. Najdete zde kroky pro instalaci a konfiguraci aplikací v kontejnerech Dockeru, stejně jako instrukce pro efektivní správu a monitorování těchto aplikací prostřednictvím rozhraní Portainer. Úložiště je navrženo tak, aby usnadnilo práci s těmito nástroji a pomohlo vám rychle a efektivně implementovat a udržovat serverová řešení ve vašem prostředí.
 
 ### Instalace dockeru:
 `wget -qO- | bash https://github.com/mkeyCZ/ubuntu_server/tree/main/install_docker.sh | bash`
