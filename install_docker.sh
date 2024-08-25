@@ -73,6 +73,8 @@ read -p "Chcete nyní restartovat systém? (ano/ne): " restart
 if [[ $restart == "ano" ]]; then
   log "Systém bude restartován..."
   sudo reboot
-else
+elif [[ $restart == "ne" ]]; then
   echo "Systém nebude restartován. Nezapomeňte restartovat systém později, aby se změny projevily."
+else
+  echo "Neplatná odpověď. Restart systému byl přeskočen."
 fi
