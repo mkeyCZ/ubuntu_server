@@ -7,3 +7,6 @@ Toto úložiště obsahuje sbírku podrobných návodů pro nasazení a správu 
 
 ### Instalace portaineru:
 `wget -qO- https://raw.githubusercontent.com/mkeyCZ/ubuntu_server/main/install_portainer.sh | bash`
+
+### Json předlohy:
+`https://raw.githubusercontent.com/ntv-one/portainer/main/template.json`
