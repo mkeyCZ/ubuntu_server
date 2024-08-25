@@ -1,33 +1,78 @@
 #!/bin/bash
 
-# Update systémových balíčků
-sudo apt-get update && sudo apt-get upgrade -y
+# Funkce pro výpis chyby a ukončení skriptu
+function chyba {
+  echo -e "\\e[91m$1\\e[39m"
+  exit 1
+}
 
-# Odinstalace starších verzí Dockeru
-sudo apt-get remove docker docker-engine docker.io containerd runc -y
+# Funkce pro logování
+function log() {
+    echo "$(date) - $1" | tee -a install_docker.log
+}
 
-# Instalace požadovaných závislostí
-sudo apt-get install apt-transport-https ca-certificates curl software-properties-common -y
+# Funkce pro kontrolu připojení k internetu
+function kontrola_internetu() {
+  printf "Kontrola připojení k internetu..."
+  wget -q --spider http://github.com
+  if [ $? -eq 0 ]; then
+    echo "Připojeno k internetu. Pokračuji."
+  else
+    chyba "Nepřipojeno k internetu. Připojte se a zkuste skript znovu."
+  fi
+}
 
-# Přidání Docker GPG klíče
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+# Funkce pro kontrolu, zda je Docker již nainstalován
+function kontrola_docker() {
+  if [ -x "$(command -v docker)" ]; then
+    echo "Docker je již nainstalován."
+    read -p "Chcete aktualizovat Docker na nejnovější verzi? (ano/ne): " odpoved
+    if [[ $odpoved == "ano" ]]; then
+      log "Aktualizace Dockeru..."
+      curl -sSL https://get.docker.com | sh || chyba "Aktualizace Dockeru selhala."
+    else
+      echo "Aktualizace Dockeru byla přeskočena."
+      exit 0
+    fi
+  fi
+}
 
-# Přidání Docker repository
-echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+# Funkce pro instalaci Docker Compose
+function instalace_docker_compose() {
+  read -p "Chcete nainstalovat Docker Compose? (ano/ne): " odpoved
+  if [[ $odpoved == "ano" ]]; then
+    log "Instalace Docker Compose..."
+    sudo curl -L "https://github.com/docker/compose/releases/download/v2.3.3/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+    sudo chmod +x /usr/local/bin/docker-compose
+    docker-compose --version || chyba "Instalace Docker Compose selhala."
+  else
+    echo "Instalace Docker Compose byla přeskočena."
+  fi
+}
 
-# Aktualizace balíčků a instalace Dockeru
-sudo apt-get update
-sudo apt-get install docker-ce docker-ce-cli containerd.io -y
+# Kontrola připojení k internetu
+kontrola_internetu
 
-# Povolení a spuštění Dockeru
-sudo systemctl enable docker
-sudo systemctl start docker
+# Kontrola, zda je Docker již nainstalován
+kontrola_docker
 
-# Přidání aktuálního uživatele do skupiny docker
-sudo usermod -aG docker $USER
+# Instalace Dockeru pomocí oficiálního skriptu
+log "Instalace Dockeru..."
+curl -sSL https://get.docker.com | sh || chyba "Instalace Dockeru selhala."
 
-# Stažení a spuštění Portaineru
-sudo docker volume create portainer_data
-sudo docker run -d -p 8000:8000 -p 9000:9000 --name=portainer --restart=always -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce
+# Přidání uživatele do skupiny docker
+log "Přidání uživatele do skupiny Docker..."
+sudo usermod -aG docker $USER || chyba "Nepodařilo se přidat uživatele do skupiny Docker."
 
-echo "Docker a Portainer byly úspěšně nainstalovány. Pro použití Dockeru bez 'sudo' se odhlaste a znovu přihlaste."
+# Instalace Docker Compose (volitelné)
+instalace_docker_compose
+
+# Výpis úspěšného dokončení a dotaz na restart systému
+echo -e "\\e[92mInstalace Dockeru byla úspěšná. Nezapomeňte se odhlásit nebo restartovat systém, aby se změny projevily.\\e[39m"
+read -p "Chcete nyní restartovat systém? (ano/ne): " restart
+if [[ $restart == "ano" ]]; then
+  log "Systém bude restartován..."
+  sudo reboot
+else
+  echo "Systém nebude restartován. Nezapomeňte restartovat systém později, aby se změny projevily."
+fi
