@@ -272,7 +272,7 @@ smbclient -L localhost
 - **Linux:** Použij `smbclient`:
 
   ```bash
-  smbclient //ip_adresa_tvojeho_serveru/sdilena_slozka -U tvuj_uzivatel
+  smb://ip_adresa_tvojeho_serveru/sdilena_slozka
   ```
 
   Zadej heslo, když bude vyzván.
