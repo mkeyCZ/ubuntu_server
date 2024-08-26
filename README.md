@@ -175,6 +175,101 @@ lsblk
 - **Pozor:** Ujisti se, že disk je připojen tam, kde očekáváš, a že data jsou přístupná. Pokud něco nefunguje správně, může být potřeba zkontrolovat kroky výše.
 
 ---
+Tady je stručný a jednoduchý návod pro nováčky, jak sdílet složku pomocí Samba a nastavit heslo pro přístup:
+
+---
+
+## Jak sdílet složku přes Samba
+
+### 1. **Nainstaluj Samba**
+
+Otevři terminál a zadej:
+
+```bash
+sudo apt update
+sudo apt install samba
+```
+
+### 2. **Připrav složku**
+
+Vytvoř složku, kterou chceš sdílet:
+
+```bash
+sudo mkdir /srv/samba/sdilena_slozka
+```
+
+Nastav oprávnění:
+
+```bash
+sudo chown nobody:nogroup /srv/samba/sdilena_slozka
+sudo chmod 777 /srv/samba/sdilena_slozka
+```
+
+### 3. **Konfiguruj Samba**
+
+Otevři konfigurační soubor:
+
+```bash
+sudo nano /etc/samba/smb.conf
+```
+
+Přejdi na konec souboru a přidej:
+
+```ini
+[sdilena_slozka]
+   path = /srv/samba/sdilena_slozka
+   browsable = yes
+   writable = yes
+   guest ok = no
+   create mask = 0770
+   directory mask = 0770
+```
+
+- **Pozor:** `guest ok = no` znamená, že budeš potřebovat uživatelské jméno a heslo pro přístup.
+
+### 4. **Nastav uživatelské jméno a heslo**
+
+Přidej uživatele do Samby a nastav heslo:
+
+```bash
+sudo smbpasswd -a tvuj_uzivatel
+```
+
+- **Pozor:** Nahraď `tvuj_uzivatel` jménem uživatele, který chceš přidat.
+
+### 5. **Restartuj Samba**
+
+Restartuj službu, aby se změny projevily:
+
+```bash
+sudo systemctl restart smbd
+```
+
+### 6. **Ověř sdílení**
+
+Zkontroluj sdílení:
+
+```bash
+smbclient -L localhost
+```
+
+### 7. **Přístup ke sdílené složce**
+
+- **Windows:** Otevři Průzkumník a zadej:
+
+  ```text
+  \\ip_adresa_tvojeho_serveru\sdilena_slozka
+  ```
+
+- **Linux:** Použij `smbclient`:
+
+  ```bash
+  smbclient //ip_adresa_tvojeho_serveru/sdilena_slozka -U tvuj_uzivatel
+  ```
+
+  Zadej heslo, když bude vyzván.
+
+---
 
 ## Další informace
 
