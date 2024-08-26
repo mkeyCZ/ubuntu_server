@@ -179,7 +179,9 @@ Tady je stručný a jednoduchý návod pro nováčky, jak sdílet složku pomoc�
 
 ---
 
-## Jak sdílet složku přes Samba
+## Jak sdílet složku přes SAMBA
+
+![SAMBA_logo](https://github.com/mkeyCZ/ubuntu_server/blob/main/obrazky/samba_logo.jpg)
 
 ### 1. **Nainstaluj Samba**
 
