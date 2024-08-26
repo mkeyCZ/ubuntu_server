@@ -34,6 +34,57 @@ Pokud potřebujete použít JSON šablony pro snadnou instalaci docker apliací,
 
 instalce výše uvedených příkazů:  ``sudo apt install mc neofetch btop``
 
+## Důležité terminál příkazy
+
+| **Kategorie**            | **Příkaz**                          | **Popis**                                               |
+|--------------------------|-------------------------------------|---------------------------------------------------------|
+| **Navigace v systému**    | `pwd`                               | Zobrazení aktuálního adresáře.                          |
+|                          | `ls`                                | Výpis souborů a složek v aktuálním adresáři.            |
+|                          | `cd [cesta]`                        | Změna adresáře.                                         |
+|                          | `mkdir [název_složky]`              | Vytvoření nové složky.                                  |
+|                          | `rm [soubor]`                       | Smazání souboru.                                        |
+| **Správa uživatelů**      | `adduser [uživatel]`                | Vytvoření nového uživatele.                             |
+|                          | `deluser [uživatel]`                | Smazání uživatele.                                      |
+|                          | `passwd [uživatel]`                 | Změna hesla uživatele.                                  |
+|                          | `usermod -aG [skupina] [uživatel]`  | Přidání uživatele do skupiny.                           |
+|                          | `whoami`                            | Zobrazení aktuálně přihlášeného uživatele.              |
+| **Správa procesů**        | `ps aux`                            | Výpis všech běžících procesů.                           |
+|                          | `top`                               | Interaktivní nástroj pro monitorování procesů.          |
+|                          | `kill [PID]`                        | Ukončení procesu podle jeho ID.                         |
+|                          | `kill -9 [PID]`                     | Násilné ukončení procesu.                               |
+| **Správa balíčků**        | `apt update`                        | Aktualizace seznamu balíčků.                            |
+|                          | `apt upgrade`                       | Aktualizace všech nainstalovaných balíčků.              |
+|                          | `apt install [balíček]`             | Instalace balíčku.                                      |
+|                          | `apt remove [balíček]`              | Odebrání balíčku.                                       |
+|                          | `apt search [název_balíčku]`        | Vyhledání balíčku podle názvu nebo popisu.              |
+| **Síťové příkazy**        | `ifconfig`                          | Zobrazení informací o síťových rozhraních.              |
+|                          | `ping [IP_adresa/hostname]`         | Kontrola dostupnosti serveru/sítě.                      |
+|                          | `netstat -tuln`                     | Zobrazení aktivních síťových spojení a portů.           |
+|                          | `ssh [uživatel]@[hostname/IP]`      | Připojení k vzdálenému serveru pomocí SSH.              |
+|                          | `ip addr show`                      | Zobrazení detailních informací o všech síťových rozhraních včetně IP adresy. |
+| **Správa souborů**        | `cp [zdroj] [cíl]`                  | Kopírování souborů nebo složek.                         |
+|                          | `mv [zdroj] [cíl]`                  | Přesun nebo přejmenování souborů nebo složek.           |
+|                          | `chmod [práva] [soubor]`            | Změna přístupových práv k souborům/složkám.             |
+|                          | `chown [uživatel]:[skupina] [soubor]` | Změna vlastníka a skupiny souboru/složky.            |
+| **Záloha a komprese**     | `tar -cvf [soubor.tar] [složka]`    | Vytvoření tar archivu.                                  |
+|                          | `tar -xvf [soubor.tar]`             | Rozbalení tar archivu.                                  |
+|                          | `gzip [soubor]`                     | Komprese souboru pomocí gzip.                           |
+|                          | `gunzip [soubor.gz]`                | Dekompresování gzip souboru.                            |
+| **Správa služeb (systemd)**| `systemctl start [služba]`         | Spuštění služby.                                        |
+|                          | `systemctl stop [služba]`           | Zastavení služby.                                       |
+|                          | `systemctl restart [služba]`        | Restartování služby.                                    |
+|                          | `systemctl status [služba]`         | Zobrazení stavu služby.                                 |
+|                          | `systemctl enable [služba]`         | Povolení automatického spouštění služby při startu.     |
+|                          | `systemctl disable [služba]`        | Zakázání automatického spouštění služby při startu.     |
+| **Další užitečné příkazy**| `df -h`                             | Zobrazení informací o volném místě na disku.            |
+|                          | `du -sh [složka]`                   | Zobrazení velikosti složky/souboru.                     |
+|                          | `history`                           | Zobrazení historie příkazů.                             |
+|                          | `uptime`                            | Zobrazení doby běhu systému a zatížení.                 |
+|                          | `reboot`                            | Restartování serveru.                                   |
+|                          | `shutdown now`                      | Vypnutí serveru.                                        |
+|                          | `lsblk`                             | Zobrazení informací o připojených blocích zařízení (disků, oddílů). |
+
+
 ## Další informace
 
 - [Dokumentace Dockeru](https://docs.docker.com/)
