@@ -38,6 +38,8 @@ Pokud potřebujete použít JSON šablony pro snadnou instalaci docker apliací,
 
 instalce výše uvedených příkazů:  ``sudo apt install mc neofetch btop``
 
+---
+
 ## Důležité terminál příkazy
 
 | **Kategorie**            | **Příkaz**                          | **Popis**                                               |
