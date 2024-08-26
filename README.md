@@ -25,6 +25,15 @@ wget -qO- https://raw.githubusercontent.com/mkeyCZ/ubuntu_server/main/install_po
 Pokud potřebujete použít JSON šablony pro snadnou instalaci docker apliací, můžete je přidat do nastavení v portaineru:
 ``https://raw.githubusercontent.com/ntv-one/portainer/main/template.json``
 
+## Nejlepší terminál programy
+
+- btop -> systémové informace
+- mc -> průzkumník souborů
+- git -> spojení s github
+- neofetch -> rychlé systémové informace
+
+instalce výše uvedených příkazů:  ``sudo apt install mc neofetch btop``
+
 ## Další informace
 
 - [Dokumentace Dockeru](https://docs.docker.com/)
