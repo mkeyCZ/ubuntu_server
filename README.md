@@ -4,6 +4,8 @@
 
 Toto úložiště obsahuje sbírku podrobných návodů pro nasazení a správu různých serverových aplikací pomocí nástrojů [Docker](https://www.docker.com/) a [Portainer](https://www.portainer.io/). Najdete zde kroky pro instalaci a konfiguraci aplikací v kontejnerech Dockeru, stejně jako instrukce pro efektivní správu a monitorování těchto aplikací prostřednictvím rozhraní Portainer. Úložiště je navrženo tak, aby usnadnilo práci s těmito nástroji a pomohlo vám rychle a efektivně implementovat a udržovat serverová řešení ve vašem prostředí.
 
+---
+
 ## Instalace Dockeru
 
 Pro instalaci Dockeru na váš **Ubuntu server** použijte následující příkaz:
@@ -24,6 +26,8 @@ wget -qO- https://raw.githubusercontent.com/mkeyCZ/ubuntu_server/main/install_po
 
 Pokud potřebujete použít JSON šablony pro snadnou instalaci docker apliací, můžete je přidat do nastavení v portaineru:
 ``https://raw.githubusercontent.com/ntv-one/portainer/main/template.json``
+
+---
 
 ## Nejlepší terminál programy
 
@@ -83,6 +87,8 @@ instalce výše uvedených příkazů:  ``sudo apt install mc neofetch btop``
 |                          | `reboot`                            | Restartování serveru.                                   |
 |                          | `shutdown now`                      | Vypnutí serveru.                                        |
 |                          | `lsblk`                             | Zobrazení informací o připojených blocích zařízení (disků, oddílů). |
+
+---
 
 ## Připojení dalšího disku do adresáře
 
@@ -165,6 +171,8 @@ lsblk
 ```
 
 - **Pozor:** Ujisti se, že disk je připojen tam, kde očekáváš, a že data jsou přístupná. Pokud něco nefunguje správně, může být potřeba zkontrolovat kroky výše.
+
+---
 
 ## Další informace
 
