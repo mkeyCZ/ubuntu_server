@@ -269,7 +269,7 @@ smbclient -L localhost
   \\ip_adresa_tvojeho_serveru\sdilena_slozka
   ```
 
-- **Linux:** Použij `smbclient`:
+- **Linux:**
 
   ```bash
   smb://ip_adresa_tvojeho_serveru/sdilena_slozka
