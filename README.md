@@ -84,6 +84,87 @@ instalce výše uvedených příkazů:  ``sudo apt install mc neofetch btop``
 |                          | `shutdown now`                      | Vypnutí serveru.                                        |
 |                          | `lsblk`                             | Zobrazení informací o připojených blocích zařízení (disků, oddílů). |
 
+## Připojení dalšího disku do adresáře
+
+### 1. **Najdi nový disk**
+Nejdříve zjisti, jaký název má nový disk:
+
+```bash
+lsblk
+```
+
+- **Pozor:** Nový disk bude často označen jako `/dev/sdb` nebo podobně. Dávej pozor, abys pracoval s novým diskem a ne s hlavním diskem systému (obvykle `/dev/sda`), aby nedošlo k nechtěné ztrátě dat.
+
+### 2. **Formátuj disk (pokud je potřeba)**
+Pokud je disk nový nebo chceš z něj smazat všechna data, naformátuj ho:
+
+```bash
+sudo mkfs.ext4 /dev/sdb
+```
+
+- **Pozor:** Tento krok smaže všechna data na disku. Ujisti se, že pracuješ se správným diskem.
+
+### 3. **Vytvoř složku pro připojení**
+Vytvoř složku (tzv. "mount point"), kam disk připojíš:
+
+```bash
+sudo mkdir /mnt/novy_disk
+```
+
+- **Pozor:** Vyber složku, která je prázdná nebo ji určíš pouze pro tento účel, aby nedošlo k přepsání existujících dat.
+
+### 4. **Připoj disk**
+Připoj disk do zvoleného adresáře:
+
+```bash
+sudo mount /dev/sdb /mnt/novy_disk
+```
+
+- **Pozor:** Po připojení bude disk dostupný v této složce. Pokud ji odpojíš, data ve složce zůstanou přístupná, ale nebudou ukládána na disk.
+
+### 5. **Trvalé připojení disku**
+Aby se disk připojoval automaticky při každém restartu:
+
+1. Zjisti UUID disku:
+
+   ```bash
+   sudo blkid /dev/sdb
+   ```
+
+   - **Pozor:** Zkopíruj správný `UUID` (unikátní identifikátor) disku, který chceš trvale připojit.
+
+2. Otevři soubor pro automatické připojení:
+
+   ```bash
+   sudo nano /etc/fstab
+   ```
+
+3. Přidej nový řádek s těmito údaji (nahraď UUID a cestu):
+
+   ```bash
+   UUID=zde-tvuj-uuid  /mnt/novy_disk  ext4  defaults  0  2
+   ```
+
+   - **Pozor:** Ověř si, že UUID, cesta a typ souborového systému (např. `ext4`) jsou správné. Chybný záznam může způsobit problémy při startu systému.
+
+4. Ulož změny a zavři editor (`CTRL + O`, `Enter`, `CTRL + X`).
+
+5. Otestuj, že je vše správně nastaveno:
+
+   ```bash
+   sudo mount -a
+   ```
+
+   - **Pozor:** Pokud nejsou žádné chyby, disk se připojí podle nové konfigurace. Pokud se objeví chyba, zkontroluj `fstab`.
+
+### 6. **Kontrola připojení**
+Ověř, že disk je správně připojen:
+
+```bash
+lsblk
+```
+
+- **Pozor:** Ujisti se, že disk je připojen tam, kde očekáváš, a že data jsou přístupná. Pokud něco nefunguje správně, může být potřeba zkontrolovat kroky výše.
 
 ## Další informace
 
