@@ -34,6 +34,8 @@ wget -qO- https://raw.githubusercontent.com/mkeyCZ/ubuntu_server/main/install_po
 Pokud potřebujete použít JSON šablony pro snadnou instalaci docker apliací, můžete je přidat do nastavení v portaineru:
 ``https://raw.githubusercontent.com/ntv-one/portainer/main/template.json``
 
+![Json konfigurace](https://github.com/mkeyCZ/ubuntu_server/blob/main/obrazky/Sn%C3%ADmek%20obrazovky_20240827_101702-1.png)
+
 ---
 
 ## Nejlepší terminál programy
