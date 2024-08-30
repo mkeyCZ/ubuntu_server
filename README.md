@@ -100,7 +100,65 @@ instalce výše uvedených příkazů:  ``sudo apt install mc neofetch btop``
 |                          | `lsblk`                             | Zobrazení informací o připojených blocích zařízení (disků, oddílů). |
 
 ---
+### Užitečné příkazy 
 
+#### Archivace do formátu **.zip**
+
+- **Archivace jednoho souboru:**
+  ```bash
+  zip archivni_soubor.zip cesta/k/zdrojovemu_souboru
+  ```
+  - Tento příkaz vytvoří `.zip` archiv s názvem `archivni_soubor.zip` obsahující soubor na zadané cestě.
+
+- **Archivace více souborů:**
+  ```bash
+  zip archivni_soubor.zip soubor1 soubor2 soubor3
+  ```
+  - Tento příkaz zabalí více souborů do jednoho `.zip` archivu.
+
+- **Rekurzivní archivace adresáře:**
+  ```bash
+  zip -r archivni_soubor.zip cesta/k/adresari/
+  ```
+  - Použitím volby `-r` zabalíte celý adresář, včetně všech podadresářů a souborů.
+
+- **Archivace s ochranou heslem:**
+  ```bash
+  zip -e archivni_soubor.zip soubor1 soubor2
+  ```
+  - Tento příkaz vytvoří šifrovaný `.zip` archiv a vyžádá si heslo, které bude nutné pro jeho rozbalení.
+
+Tyto příkazy pokrývají běžné scénáře při vytváření `.zip` archivů a umožňují snadné a efektivní balení souborů.
+
+#### Kopírování přes **rsync**
+
+**Lokální kopírování souborů:**
+```bash
+rsync -avh /cesta/k/zdrojovemu/souboru/file.txt /cesta/k/cilovemu/adresari/
+```
+- Tento příkaz zkopíruje soubor `file.txt` do cílového adresáře na vašem lokálním systému. 
+- **Volby:**
+  - `-a`: Archivní režim (rekurzivní kopírování, zachování atributů jako jsou práva a časy).
+  - `-v`: Zobrazí podrobnosti o kopírování.
+  - `-h`: Výstupy v lidsky čitelném formátu (např. velikosti souborů).
+
+**Kopírování souborů na vzdálený server přes SSH:**
+```bash
+rsync -avh -e ssh /cesta/k/lokalnimu/souboru/ user@remote_server:/cesta/k/cilovemu/adresari/
+```
+- Tento příkaz zkopíruje soubor nebo adresář ze zdrojového umístění na vašem lokálním počítači na vzdálený server pomocí SSH.
+- **Volba `-e ssh`** zajistí, že přenos bude probíhat přes zabezpečený SSH protokol.
+
+**Kopírování souborů ze vzdáleného serveru na lokální počítač přes SSH:**
+```bash
+rsync -avh -e ssh user@remote_server:/cesta/k/vzdalenemu/souboru/ /cesta/k/lokalnimu/adresari/
+```
+- Tento příkaz zkopíruje soubor nebo adresář ze vzdáleného serveru na váš lokální počítač. 
+- Opět je použit protokol SSH pro zabezpečený přenos dat.
+
+Tento způsob kopírování je efektivní, bezpečný a umožňuje snadnou synchronizaci mezi lokálním a vzdáleným systémem.
+
+---
 ## Připojení dalšího disku do adresáře
 
 ### 1. **Najdi nový disk**
